@@ -75,5 +75,6 @@ for id in id_file:lines() do
 	else
 		break
 	end
+	index=index+1
 end
 print("更新完成！")
