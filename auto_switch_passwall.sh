@@ -38,7 +38,7 @@ read -r -u3
 {
     latency=$(curl -s "http://localhost/cgi-bin/luci/admin/services/passwall/urltest_node?id=${id_line}" -b /root/cookie.txt)
     if [[ "${latency}" =~ "use_time" ]]; then
-        latency=$(echo "${latency}" | jq .use_time | sed 's/\"//g' | awk '{printf "%.2f",$0}')
+        latency=$(echo "${latency}" | sed -e 's/{"use_time":"//g' -e 's/"}//g' | awk '{printf "%.2f",$0}')
     else
         # 给一个很大的值表示超时，方面后面排序
         latency=1000000000
