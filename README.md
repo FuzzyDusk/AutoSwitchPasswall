@@ -1,0 +1,2 @@
+# AutoSwitchPasswall
+一个自动切换Passwall节点的脚本
