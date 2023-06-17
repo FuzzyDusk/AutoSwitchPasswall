@@ -6,7 +6,7 @@ local latency={}
 
 -- 清空文件
 luci.sys.exec('echo -n "" >/root/latency.txt')
-luci.sys.exec('echo -n "" >/root/latency.bck')
+luci.sys.exec('echo -n "" >/root/latency.bak')
 
 function urltest_node(id)
 	local result = luci.sys.exec(string.format("/usr/share/passwall/test.sh url_test_node %s %s", id, "urltest_node"))
@@ -61,8 +61,8 @@ end
 -- 	coroutine.resume(coroutine_item.co, coroutine_item.id)
 -- end
 
-luci.sys.call("sort -n /root/latency.txt | awk '{print $2}' >/root/latency.bck")
-local id_file=io.open('/root/latency.bck','r')
+luci.sys.call("sort -n /root/latency.txt | awk '{print $2}' >/root/latency.bak")
+local id_file=io.open('/root/latency.bak','r')
 index=1
 for id in id_file:lines() do
 	if(index==1) then
